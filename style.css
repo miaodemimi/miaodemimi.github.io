@@ -1,0 +1,152 @@
+/* ================= 基础博客样式 ================= */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f6;
+  color: #333;
+  background: url("./img/login/loginbg.jpg") no-repeat center center fixed;
+  background-position: 0 50px; /* 根据 header 的高度调整背景图位置 */
+}
+header#mainHeader {
+  position: relative; /* 核心：作为绝对定位的参照物 */
+  width: 100%;
+  height: 155px; /* 你可以自由调整这个高度，比如 200px 或 300px */
+  overflow: hidden; /* 确保背景不超出头部范围 */
+  background-color: #2c3e50; /* 加载图片前的占位底色 */
+}
+.header-content {
+  position: relative; /* 相对定位 */
+  z-index: 1; /* 浮在背景 (z-index:0) 之上 */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 内容垂直居中 */
+  align-items: center; /* 内容水平居中 */
+  color: white;
+  /* 💡强烈建议加文字阴影，否则在花哨的背景图上字会看不清 */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+nav {
+  margin-top: 15px;
+}
+nav a {
+  color: #1abc9c;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+nav a:hover {
+  color: white;
+}
+
+.nav-login-btn {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 15px;
+  transition: background 0.3s;
+}
+.nav-login-btn:hover {
+  background-color: #16a085;
+}
+
+.container {
+  display: flex;
+  max-width: 1100px;
+  margin: 30px auto;
+  gap: 20px;
+  padding: 0 20px;
+}
+main {
+  flex: 3;
+}
+aside {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+}
+article {
+  background-color: white;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= 💡 弹窗核心 CSS ================= */
+.amiya {
+  display: none; /* 核心：一开始不要显示 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 这里的白框样式，因为你删掉了 .modal-content，我建议你后续给 .form 或者 .word 加上背景色 */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+.close-btn:hover {
+  color: #ccc;
+}
+
+/* 用于隐藏元素的工具类 */
+.disappear {
+  display: none;
+}
+
+/* ================= B站动态头图样式 (原比例缩放版) ================= */
+.bili-banner {
+  position: absolute; /* 绝对定位，脱离文档流 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* 强制沉到最底层 */
+}
+.bili-banner .layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bili-banner .layer img,
+.bili-banner .layer video {
+  /* 不限制尺寸，让原图保持原始像素大小 */
+  /* JS 的 data-scale transform 会负责控制最终显示尺寸 */
+  max-width: none;
+  flex-shrink: 0;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
